@@ -1,9 +1,6 @@
 <?php
-
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Adresse
  *
@@ -20,50 +17,42 @@ class Adresse
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var int
      *
      * @ORM\Column(name="numeroAdresse", type="integer", nullable=true)
      */
     private $numeroAdresse;
-
     /**
      * @var string
      *
      * @ORM\Column(name="complementNumeroAdresse", type="string", length=5, nullable=true)
      */
     private $complementNumeroAdresse;
-
     /**
      * @var string
      *
      * @ORM\Column(name="voie", type="string", length=50)
      */
     private $voie;
-
     /**
      * @var int
      *
      * @ORM\Column(name="codePostaleAdresse", type="integer")
      */
     private $codePostaleAdresse;
-
     /**
      * @var string
      *
      * @ORM\Column(name="VilleAdresse", type="string", length=255)
      */
     private $villeAdresse;
-
     /**
      * @var string
      *
      * @ORM\Column(name="PaysAdresse", type="string", length=255)
      */
     private $paysAdresse;
-
-
     /**
      * Get id
      *
@@ -73,8 +62,6 @@ class Adresse
     {
         return $this->id;
     }
-
-
     /**
      * Set numeroAdresse
      *
@@ -85,10 +72,8 @@ class Adresse
     public function setNumeroAdresse($numeroAdresse)
     {
         $this->numeroAdresse = $numeroAdresse;
-
         return $this;
     }
-
     /**
      * Get numeroAdresse
      *
@@ -98,7 +83,6 @@ class Adresse
     {
         return $this->numeroAdresse;
     }
-
     /**
      * Set complementNumeroAdresse
      *
@@ -109,10 +93,8 @@ class Adresse
     public function setComplementNumeroAdresse($complementNumeroAdresse)
     {
         $this->complementNumeroAdresse = $complementNumeroAdresse;
-
         return $this;
     }
-
     /**
      * Get complementNumeroAdresse
      *
@@ -122,7 +104,6 @@ class Adresse
     {
         return $this->complementNumeroAdresse;
     }
-
     /**
      * Set voie
      *
@@ -133,10 +114,8 @@ class Adresse
     public function setVoie($voie)
     {
         $this->voie = $voie;
-
         return $this;
     }
-
     /**
      * Get voie
      *
@@ -146,7 +125,6 @@ class Adresse
     {
         return $this->voie;
     }
-
     /**
      * Set codePostaleAdresse
      *
@@ -157,10 +135,8 @@ class Adresse
     public function setCodePostaleAdresse($codePostaleAdresse)
     {
         $this->codePostaleAdresse = $codePostaleAdresse;
-
         return $this;
     }
-
     /**
      * Get codePostaleAdresse
      *
@@ -170,7 +146,6 @@ class Adresse
     {
         return $this->codePostaleAdresse;
     }
-
     /**
      * Set villeAdresse
      *
@@ -181,10 +156,8 @@ class Adresse
     public function setVilleAdresse($villeAdresse)
     {
         $this->villeAdresse = $villeAdresse;
-
         return $this;
     }
-
     /**
      * Get villeAdresse
      *
@@ -194,7 +167,6 @@ class Adresse
     {
         return $this->villeAdresse;
     }
-
     /**
      * Set paysAdresse
      *
@@ -205,10 +177,8 @@ class Adresse
     public function setPaysAdresse($paysAdresse)
     {
         $this->paysAdresse = $paysAdresse;
-
         return $this;
     }
-
     /**
      * Get paysAdresse
      *
@@ -218,7 +188,6 @@ class Adresse
     {
         return $this->paysAdresse;
     }
-
     public function simpleAdresse()
     {
         return $this->numeroAdresse." ".$this->complementNumeroAdresse." ".$this->voie. ", ".$this->codePostaleAdresse." ".$this->villeAdresse." ".$this->paysAdresse;
