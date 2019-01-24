@@ -37,13 +37,47 @@ class DefaultController extends Controller
         }
 
         return $this->render('default/index.html.twig', array(
-            'user'          => $user[0],
-            'lienSociaux'   => $lienSociaux[0],
-            'form'          => $form->createView(),
-            'listeProjet'   => $listeProjet,
-            'description'   => $description[0],
+            'user' => $user[0],
+            'lienSociaux' => $lienSociaux[0],
+            'form' => $form->createView(),
+            'listeProjet' => $listeProjet,
+            'description' => $description[0],
         ));
 
+    }
+
+    /**
+     * @Route("/demo", name="demo")
+     */
+    public function demoAction(Request $request)
+    {
+        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findAll();
+        $lienSociaux = $this->getDoctrine()->getRepository('AppBundle:LienSociaux')->findAll();
+        $listeProjet = $this->getDoctrine()->getRepository('AppBundle:Projet')->findAll();
+        $description = $this->getDoctrine()->getRepository('AppBundle:DescriptionGeneral')->findAll();
+
+
+        $email = new EmailInterested();
+        $form = $this->createForm(EmailInterestedType::class, $email);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($email);
+            $em->flush();
+
+            $email = new EmailInterested();
+            $form = $this->createForm(EmailInterestedType::class, $email);
+        }
+
+        return $this->render('default/demo.html.twig', array(
+            'user' => $user[0],
+            'lienSociaux' => $lienSociaux[0],
+            'form' => $form->createView(),
+            'listeProjet' => $listeProjet,
+            'description' => $description[0],
+        ));
     }
 
 }
