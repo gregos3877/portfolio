@@ -66,6 +66,7 @@ class DefaultController extends Controller
                 $em->flush();
 
                 $email = new EmailInterested();
+                echo "ok";
                 $form = $this->createForm(EmailInterestedType::class, $email);
             }
 
