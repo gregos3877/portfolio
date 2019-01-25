@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Projet
  *
@@ -36,7 +35,17 @@ class Projet
     /**
      * @ORM\Column(name="imageProjet", type="string", length=255)
      */
-    private $ImageProjet;
+    private $imageProjet;
+
+    /**
+     * @ORM\Column(name="shortDescriptionProjet", type="string", length=255)
+     */
+    private $shortDescriptionProjet;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", cascade={"persist"})
+     */
+    private $user;
 
 
     /**
@@ -96,4 +105,51 @@ class Projet
     {
         return $this->descriptionProjet;
     }
+
+    /**
+     * Set imageProjet
+     *
+     * @param string $imageProjet
+     *
+     * @return Projet
+     */
+    public function setImageProjet($imageProjet)
+    {
+        $this->imageProjet = $imageProjet;
+
+        return $this;
+    }
+
+    /**
+     * Get imageProjet
+     *
+     * @return string
+     */
+    public function getImageProjet()
+    {
+        return $this->imageProjet;
+    }
+
+    /**
+     *  Get shortDescription
+     *
+     * @return string
+     */
+    public function getShortDescriptionProjet() {
+        return $this->shortDescriptionProjet;
+    }
+
+    /**
+     * Set shortDescriptionProjet
+     *
+     * @param string $shortDescription
+     *
+     * @return Projet
+     */
+    public function setShortDescriptionProjet($shortDescription) {
+        $this->shortDescriptionProjet = $shortDescription ;
+
+        return $this;
+    }
+
 }

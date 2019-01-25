@@ -38,24 +38,23 @@ class BackendController extends Controller
     public function descriptionGeneralAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
 
-        $description = $em->getRepository('AppBundle:DescriptionGeneral')->findAll();
+        $description = $this->getUser()->getDescriptionGeneral();
 
 
         if ($description == null) {
             $description = new DescriptionGeneral();
             $description->setDescriptionApp("Description de l'application");
             $description->setNomApp("Nom App");
-            $em->persist($description);
-            $em->flush();
+            $this->getUser()->setDescriptionGeneral($description);
         }
-        else {
-            $description = $description[0];
-        }
+
+
 
         $editForm = $this->createForm('AppBundle\Form\DescriptionGeneralType', $description);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->persist($description);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('dashboard');
@@ -68,6 +67,7 @@ class BackendController extends Controller
 
         return $this->render('backend/descriptionGeneral.html.twig');
     }
+
 
 
 }

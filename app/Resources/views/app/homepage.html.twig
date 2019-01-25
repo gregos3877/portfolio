@@ -28,13 +28,13 @@
                 <h1 class="mx-auto my-0 text-uppercase">{{ description.nomApp }}</h1>
                 <h2 class="text-white-50 mx-auto mt-2 mb-5">{{ description.descriptionApp }}</h2>
                 {#A free, responsive, one page Bootstrap theme created by Start Bootstrap.#}
-                <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a>
+                <a href="#projects" class="btn btn-primary js-scroll-trigger">Voir projet</a>
             </div>
         </div>
     </header>
 
-    <!-- About Section -->
-    <section id="about" class="about-section text-center">
+    <!-- Competences Section -->
+    <section id="comp" class="about-section text-center">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
@@ -56,20 +56,20 @@
         <div class="container">
 
             <!-- Featured Project Row -->
-            <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-                <div class="col-xl-8 col-lg-7">
-                    <img class="img-fluid mb-3 mb-lg-0" src="{{ asset('theme/img/bg-masthead.jpg') }}" alt="">
-                </div>
-                <div class="col-xl-4 col-lg-5">
-                    <div class="featured-text text-center text-lg-left">
-                        <h4>Shoreline</h4>
-                        <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use
-                            it
-                            for any project - even commercial projects! Download it, customize it, and publish your
-                            website!</p>
-                    </div>
-                </div>
-            </div>
+            {#<div class="row align-items-center no-gutters mb-4 mb-lg-5">#}
+                {#<div class="col-xl-8 col-lg-7">#}
+                    {#<img class="img-fluid mb-3 mb-lg-0" src="{{ asset('theme/img/bg-masthead.jpg') }}" alt="">#}
+                {#</div>#}
+                {#<div class="col-xl-4 col-lg-5">#}
+                    {#<div class="featured-text text-center text-lg-left">#}
+                        {#<h4>Shoreline</h4>#}
+                        {#<p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use#}
+                            {#it#}
+                            {#for any project - even commercial projects! Download it, customize it, and publish your#}
+                            {#website!</p>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
 
             {% for projet in listeProjet %}
                 {% if loop.index is divisible by(2) %}
@@ -109,6 +109,8 @@
                         </div>
                     </div>
                 {% endif %}
+            {% else %}
+                Aucun Projet
             {% endfor %}
 
 
@@ -152,7 +154,9 @@
                             <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                             <h4 class="text-uppercase m-0">Address</h4>
                             <hr class="my-4">
-                            <div class="small text-black-50">{% if user.uniqueAdresse.simpleAdresse is defined %}{{ user.uniqueAdresse.simpleAdresse }}{% endif %}</div>
+                            {% if user.uniqueAdresse.simpleAdresse is defined %}
+                            <div class="small text-black-50">{{ user.uniqueAdresse.simpleAdresse }}</div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -184,15 +188,19 @@
 
             <div class="social d-flex justify-content-center">
                 {% if lienSociaux.lienTwitter is defined %}
-                    <a href="http://{{ lienSociaux.lienTwitter }}" class="mx-2">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="http://{{ lienSociaux.lienFacebook }}" class="mx-2">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="http://{{ lienSociaux.lienGithub }}" class="mx-2">
-                        <i class="fab fa-github"></i>
-                    </a>
+                <a href="http://{{ lienSociaux.lienTwitter }}" class="mx-2">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                {% endif %}
+                {% if lienSociaux.lienFacebook is defined %}
+                <a href="http://{{ lienSociaux.lienFacebook }}" class="mx-2">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                {% endif %}
+                {% if lienSociaux.lienGithub is defined %}
+                <a href="http://{{ lienSociaux.lienGithub }}" class="mx-2">
+                    <i class="fab fa-github"></i>
+                </a>
                 {% endif %}
             </div>
 

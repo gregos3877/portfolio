@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
-use AppBundle\Entity\Adresse;
 
 /**
  * User
@@ -30,6 +29,17 @@ class User extends BaseUser
      */
     private $adresses;
 
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\DescriptionGeneral", cascade={"persist"})
+     */
+    private $descriptionGeneral;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\LienSociaux", cascade={"persist"})
+     */
+    private $lienSociaux;
+
+
     public function __construct()
     {
         parent::__construct();
@@ -46,4 +56,43 @@ class User extends BaseUser
         return $this->id;
     }
 
+
+    /**
+     * Add adresse
+     *
+     * @param \AppBundle\Entity\Adresse $adress
+     *
+     * @return User
+     */
+    public function addAdresse(Adresse $adresse)
+    {
+        $this->adresses[] = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Remove adresse
+     *
+     * @param \AppBundle\Entity\Adresse $adress
+     */
+    public function removeAdresse(Adresse $adresse)
+    {
+        $this->adresses->removeElement($adresse);
+    }
+
+    /**
+     * Get adresses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAdresses()
+    {
+        return $this->adresses;
+    }
+
+    public function uniqueAdresse()
+    {
+        return $this->adresses[0];
+    }
 }

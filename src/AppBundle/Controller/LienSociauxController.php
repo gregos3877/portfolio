@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Liensociaux controller.
  *
- * @Route("liensociaux")
+ * @Route("/backend/liensociaux")
  */
 class LienSociauxController extends Controller
 {
@@ -26,16 +26,13 @@ class LienSociauxController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $lienSociaux = $em->getRepository('AppBundle:LienSociaux')->findAll();
+        $lienSociaux = $this->getUser()->getLienSociaux();
 
         if ($lienSociaux == null) {
             $lienSociaux = new LienSociaux();
-            $em->persist($lienSociaux);
-            $em->flush();
+            $this->getUser()->setLienSociaux($lienSociaux);
         }
-        else {
-            $lienSociaux = $lienSociaux[0];
-        }
+
 
         $editForm = $this->createForm('AppBundle\Form\LienSociauxType', $lienSociaux);
         $editForm->handleRequest($request);

@@ -11,9 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/", name="homepage")
-     */
     public function indexAction(Request $request)
     {
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->findAll();
@@ -45,12 +42,10 @@ class DefaultController extends Controller
         ));
     }
 
-    /**
-     * @Route("/demo", name="demo")
-     */
     public function demoAction(Request $request)
     {
-        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findAll();
+        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array("username" => "demo"));
+        dump($user);
         $lienSociaux = $this->getDoctrine()->getRepository('AppBundle:LienSociaux')->findAll();
         $listeProjet = $this->getDoctrine()->getRepository('AppBundle:Projet')->findAll();
         $description = $this->getDoctrine()->getRepository('AppBundle:DescriptionGeneral')->findAll();
@@ -72,7 +67,7 @@ class DefaultController extends Controller
         }
 
         return $this->render('default/demo.html.twig', array(
-            'user' => $user[0],
+            'user' => $user,
             'lienSociaux' => $lienSociaux[0],
             'form' => $form->createView(),
             'listeProjet' => $listeProjet,

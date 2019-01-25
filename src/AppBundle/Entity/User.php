@@ -29,6 +29,15 @@ class User extends BaseUser
      */
     private $adresses;
 
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\DescriptionGeneral", cascade={"persist"})
+     */
+    private $descriptionGeneral;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\LienSociaux", cascade={"persist"})
+     */
+    private $lienSociaux;
 
 
     public function __construct()
@@ -82,7 +91,82 @@ class User extends BaseUser
         return $this->adresses;
     }
 
-    public function uniqueAdresse() {
+    public function uniqueAdresse()
+    {
         return $this->adresses[0];
+    }
+
+    /**
+     * Add adress.
+     *
+     * @param \AppBundle\Entity\Adresse $adress
+     *
+     * @return User
+     */
+    public function addAdress(\AppBundle\Entity\Adresse $adress)
+    {
+        $this->adresses[] = $adress;
+
+        return $this;
+    }
+
+    /**
+     * Remove adress.
+     *
+     * @param \AppBundle\Entity\Adresse $adress
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAdress(\AppBundle\Entity\Adresse $adress)
+    {
+        return $this->adresses->removeElement($adress);
+    }
+
+    /**
+     * Set descriptionGeneral.
+     *
+     * @param \AppBundle\Entity\DescriptionGeneral|null $descriptionGeneral
+     *
+     * @return User
+     */
+    public function setDescriptionGeneral(\AppBundle\Entity\DescriptionGeneral $descriptionGeneral = null)
+    {
+        $this->descriptionGeneral = $descriptionGeneral;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptionGeneral.
+     *
+     * @return \AppBundle\Entity\DescriptionGeneral|null
+     */
+    public function getDescriptionGeneral()
+    {
+        return $this->descriptionGeneral;
+    }
+
+    /**
+     * Set lienSociaux.
+     *
+     * @param \AppBundle\Entity\LienSociaux|null $lienSociaux
+     *
+     * @return User
+     */
+    public function setLienSociaux(\AppBundle\Entity\LienSociaux $lienSociaux = null)
+    {
+        $this->lienSociaux = $lienSociaux;
+
+        return $this;
+    }
+
+    /**
+     * Get lienSociaux.
+     *
+     * @return \AppBundle\Entity\LienSociaux|null
+     */
+    public function getLienSociaux()
+    {
+        return $this->lienSociaux;
     }
 }

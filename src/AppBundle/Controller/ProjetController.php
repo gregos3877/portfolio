@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Projet;
+use AppBundle\Form\ProjetEditType;
 use AppBundle\Form\ProjetType;
 use http\Env\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,6 +18,7 @@ class ProjetController extends Controller
     public function newProjetAction(Request $request)
     {
         $projet = new Projet();
+        $projet->setUser($this->getUser());
         $form = $this->createForm(ProjetType::class, $projet);
 
         $form->handleRequest($request);
@@ -52,7 +54,7 @@ class ProjetController extends Controller
             $em->persist($projet);
             $em->flush();
 
-            return $this->redirectToRoute('dashboard');
+            return $this->redirectToRoute('liste_projet');
 
         }
 
@@ -68,10 +70,7 @@ class ProjetController extends Controller
      */
     public function listeProjetAction()
     {
-
-        $listeProjet = $this->getDoctrine()->getRepository('AppBundle:Projet')->findAll();
-
-        dump($listeProjet);
+        $listeProjet = $this->getDoctrine()->getRepository('AppBundle:Projet')->findBy(array("user" => $this->getUser()));
         return $this->render('projet/listeProjet.html.twig', array(
             'listeProjet' => $listeProjet,
         ));
@@ -85,6 +84,41 @@ class ProjetController extends Controller
         return $this->render('projet/viewProjet.html.twig', array(
             'projet'    => $projet,
         ));
+    }
+
+    /**
+     * @Route("/backend/remove/{projet}", name="remove_projet")
+     */
+    public function removeProjetAction(Projet $projet)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($projet);
+        $em->flush();
+
+        return $this->redirectToRoute('liste_projet');
+    }
+
+    /**
+     * @Route("/backend/edit/projet/{projet}", name="edit_projet")
+     */
+    public function editProjetAction(Projet $projet, Request $request)
+    {
+        $formEdit = $this->createForm(ProjetEditType::class, $projet);
+        $formEdit->handleRequest($request);
+
+        if ($formEdit->isValid() && $formEdit->isSubmitted())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute('liste_projet');
+        }
+
+        return $this->render('projet/editProjet.html.twig', array(
+            'form'  => $formEdit->createView(),
+        ));
+
+
     }
 
     /**

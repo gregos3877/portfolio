@@ -41,5 +41,52 @@ class DescriptionGeneral
     {
         return $this->id;
     }
-}
 
+    /**
+     * Set nomApp
+     *
+     * @param string $nomApp
+     *
+     * @return DescriptionGeneral
+     */
+    public function setNomApp($nomApp)
+    {
+        $this->nomApp = $nomApp;
+
+        return $this;
+    }
+
+    /**
+     * Get nomApp
+     *
+     * @return string
+     */
+    public function getNomApp()
+    {
+        return $this->nomApp;
+    }
+
+    /**
+     * Set descriptionApp
+     *
+     * @param string $descriptionApp
+     *
+     * @return DescriptionGeneral
+     */
+    public function setDescriptionApp($descriptionApp)
+    {
+        $this->descriptionApp = $descriptionApp;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptionApp
+     *
+     * @return string
+     */
+    public function getDescriptionApp()
+    {
+        return $this->descriptionApp;
+    }
+}

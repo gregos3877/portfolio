@@ -1,0 +1,21 @@
+{% extends 'baseBackend.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Nouveau Projet</h4>
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <input type="submit" value="Valider"\>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -42,6 +42,11 @@ class Projet
      */
     private $shortDescriptionProjet;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", cascade={"persist"})
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -147,4 +152,28 @@ class Projet
         return $this;
     }
 
+
+    /**
+     * Set user.
+     *
+     * @param \AppBundle\Entity\User|null $user
+     *
+     * @return Projet
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user.
+     *
+     * @return \AppBundle\Entity\User|null
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

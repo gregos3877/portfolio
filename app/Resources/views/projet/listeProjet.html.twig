@@ -13,7 +13,12 @@
                     <p class="mt-4 card-text">
                         {{ projet.descriptionProjet }}
                     </p>
-                    <button class="btn btn-info btn-sm mt-3 mb-4">Follow</button>
+                    <a href="{{ path('remove_projet', {'projet' : projet.id}) }}">
+                        <button class="btn btn-info btn-sm mt-3 mb-4" type="button">Remove</button>
+                    </a>
+                    <a href="{{ path('edit_projet', {'projet' : projet.id}) }}">
+                        <button class="btn btn-info btn-sm mt-3 mb-4" type="button">edit</button>
+                    </a>
                     <div class="border-top pt-3">
                         <div class="row">
                             <div class="col-4">
