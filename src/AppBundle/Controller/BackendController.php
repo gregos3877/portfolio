@@ -5,12 +5,18 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\DescriptionGeneral;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Backend controller.
+ *
+ * @Route("/backend")
+ */
 class BackendController extends Controller
 {
     /**
-     * @Route("/backend/dashboard", name="dashboard")
+     * @Route("/dashboard", name="dashboard")
      */
     public function dashboardAction()
     {
@@ -25,7 +31,7 @@ class BackendController extends Controller
     public function contactAction() {
 
         $em = $this->getDoctrine()->getManager();
-        $contacts = $this->getDoctrine()->getRepository('AppBundle:EmailInterested')->findAll();
+        $contacts = $this->getDoctrine()->getRepository('AppBundle:EmailInterested')->findBy(array('user' => $this->getUser()));
 
         return $this->render('backend/contact.html.twig', array(
             'contacts'  => $contacts,
@@ -33,7 +39,7 @@ class BackendController extends Controller
     }
 
     /**
-     * @Route("/backend/descriptionGeneral", name="description_general")
+     * @Route("/descriptionGeneral", name="description_general")
      */
     public function descriptionGeneralAction(Request $request) {
         $em = $this->getDoctrine()->getManager();

@@ -21,9 +21,10 @@ class AppController extends Controller
         $lienSociaux = $user->getLienSociaux();
         $listeProjet = $this->getDoctrine()->getRepository('AppBundle:Projet')->findBy(array("user" => $user->getId()));
         $description = $user->getDescriptionGeneral();
+        $competence = $this->getDoctrine()->getRepository('AppBundle:CompetenceUser')->findBy(array("user" => $user->getId()));
 
 
-        $email = new EmailInterested();
+        $email = new EmailInterested($user);
         $form = $this->createForm(EmailInterestedType::class, $email);
 
         $form->handleRequest($request);
@@ -33,8 +34,8 @@ class AppController extends Controller
             $em->persist($email);
             $em->flush();
 
-            $email = new EmailInterested();
-            $form = $this->createForm(EmailInterestedType::class, $email);
+//            $email = new EmailInterested($user);
+//            $form = $this->createForm(EmailInterestedType::class, $email);
         }
 
         return $this->render('app/homepage.html.twig', array(
@@ -43,6 +44,17 @@ class AppController extends Controller
             'form' => $form->createView(),
             'listeProjet' => $listeProjet,
             'description' => $description,
+            'competences'   => $competence,
+        ));
+    }
+
+    /**
+     * @Route("/backend/mesCompetence", name="mes_competence")
+     */
+    public function viewPage(){
+        $comp = null;
+        return $this->render('competence/mesCompetence.html.twig', array(
+            'competences' => $comp,
         ));
     }
 

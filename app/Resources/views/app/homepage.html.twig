@@ -35,19 +35,44 @@
 
     <!-- Competences Section -->
     <section id="comp" class="about-section text-center">
+        {#<div class="container">#}
+            {#<div class="row">#}
+                {#<div class="col-lg-8 mx-auto">#}
+                    {#<h2 class="text-white mb-4">Built with Bootstrap 4</h2>#}
+                    {#<p class="text-white-50">Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be#}
+                        {#yours#}
+                        {#right now, simply download the template on#}
+                        {#<a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The#}
+                        {#theme is#}
+                        {#open source, and you can use it for any purpose, personal or commercial.</p>#}
+                {#</div>#}
+            {#</div>#}
+            {#<img src="{{ asset('theme/img/ipad.png') }}" class="img-fluid" alt="">#}
+        {#</div>#}
+        {#<div><br><br></div>#}
+        {#/* Competence */#}
         <div class="container">
-            <div class="row">
+
                 <div class="col-lg-8 mx-auto">
-                    <h2 class="text-white mb-4">Built with Bootstrap 4</h2>
-                    <p class="text-white-50">Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be
-                        yours
-                        right now, simply download the template on
-                        <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The
-                        theme is
-                        open source, and you can use it for any purpose, personal or commercial.</p>
+                    <h2 class="text-white mb-4">Compétences</h2>
                 </div>
+            <div class="row">
+                {% for compet in competences %}
+                    {% if  loop.index is divisible by(4) %}
+                        <div class="w-100"><br></div>
+                    {% endif %}
+                    <div class="col-4">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: {{ compet.niveau }}0%;"
+                                 aria-valuenow="{{ compet.niveau }}0" aria-valuemin="0" aria-valuemax="100">
+                                {{ compet.competence.nomCompetence }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
             </div>
-            <img src="{{ asset('theme/img/ipad.png') }}" class="img-fluid" alt="">
+            <div><br><br></div>
         </div>
     </section>
 
@@ -57,18 +82,18 @@
 
             <!-- Featured Project Row -->
             {#<div class="row align-items-center no-gutters mb-4 mb-lg-5">#}
-                {#<div class="col-xl-8 col-lg-7">#}
-                    {#<img class="img-fluid mb-3 mb-lg-0" src="{{ asset('theme/img/bg-masthead.jpg') }}" alt="">#}
-                {#</div>#}
-                {#<div class="col-xl-4 col-lg-5">#}
-                    {#<div class="featured-text text-center text-lg-left">#}
-                        {#<h4>Shoreline</h4>#}
-                        {#<p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use#}
-                            {#it#}
-                            {#for any project - even commercial projects! Download it, customize it, and publish your#}
-                            {#website!</p>#}
-                    {#</div>#}
-                {#</div>#}
+            {#<div class="col-xl-8 col-lg-7">#}
+            {#<img class="img-fluid mb-3 mb-lg-0" src="{{ asset('theme/img/bg-masthead.jpg') }}" alt="">#}
+            {#</div>#}
+            {#<div class="col-xl-4 col-lg-5">#}
+            {#<div class="featured-text text-center text-lg-left">#}
+            {#<h4>Shoreline</h4>#}
+            {#<p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use#}
+            {#it#}
+            {#for any project - even commercial projects! Download it, customize it, and publish your#}
+            {#website!</p>#}
+            {#</div>#}
+            {#</div>#}
             {#</div>#}
 
             {% for projet in listeProjet %}
@@ -76,7 +101,7 @@
                     <!-- Project One Row -->
                     <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
                         <div class="col-lg-6">
-                            <img class="img-fluid" src="{{ asset('images/' ~ projet.imageProjet) }}" alt="">
+                            <img class="img-fluid" src="{{ asset('images/' ~ projet.imageProjet) }}" alt="" style="height: 100%;width: 100%">
                         </div>
                         <div class="col-lg-6">
                             <div class="bg-black text-center h-100 project">
@@ -94,7 +119,7 @@
                     <!-- Project Two Row -->
                     <div class="row justify-content-center no-gutters">
                         <div class="col-lg-6">
-                            <img class="img-fluid" src="{{ asset('images/' ~ projet.imageProjet) }}" alt="">
+                            <img class="img-fluid" src="{{ asset('images/' ~ projet.imageProjet) }}" alt="" style="height: 100%;width: 100%">
                         </div>
                         <div class="col-lg-6 order-lg-first">
                             <div class="bg-black text-center h-100 project">
@@ -155,7 +180,7 @@
                             <h4 class="text-uppercase m-0">Address</h4>
                             <hr class="my-4">
                             {% if user.uniqueAdresse.simpleAdresse is defined %}
-                            <div class="small text-black-50">{{ user.uniqueAdresse.simpleAdresse }}</div>
+                                <div class="small text-black-50">{{ user.uniqueAdresse.simpleAdresse }}</div>
                             {% endif %}
                         </div>
                     </div>
@@ -188,19 +213,19 @@
 
             <div class="social d-flex justify-content-center">
                 {% if lienSociaux.lienTwitter is defined %}
-                <a href="http://{{ lienSociaux.lienTwitter }}" class="mx-2">
-                    <i class="fab fa-twitter"></i>
-                </a>
+                    <a href="http://{{ lienSociaux.lienTwitter }}" class="mx-2">
+                        <i class="fab fa-twitter"></i>
+                    </a>
                 {% endif %}
                 {% if lienSociaux.lienFacebook is defined %}
-                <a href="http://{{ lienSociaux.lienFacebook }}" class="mx-2">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
+                    <a href="http://{{ lienSociaux.lienFacebook }}" class="mx-2">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
                 {% endif %}
                 {% if lienSociaux.lienGithub is defined %}
-                <a href="http://{{ lienSociaux.lienGithub }}" class="mx-2">
-                    <i class="fab fa-github"></i>
-                </a>
+                    <a href="http://{{ lienSociaux.lienGithub }}" class="mx-2">
+                        <i class="fab fa-github"></i>
+                    </a>
                 {% endif %}
             </div>
 

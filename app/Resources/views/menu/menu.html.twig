@@ -2,9 +2,9 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">{{ description.nomApp }}</a>
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <a href="{{ path('dashboard') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a>
-        {% endif %}
+        {#{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}#}
+            {#<a href="{{ path('dashboard') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a>#}
+        {#{% endif %}#}
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -25,16 +25,16 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
                 </li>
-                <li class="nav-item">
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <a href="{{ path('fos_user_security_logout') }}">
-                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                        </a>
-                    {% else %}
-                        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-                    {% endif %}
+                {#<li class="nav-item">#}
+                    {#{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}#}
+                        {#<a href="{{ path('fos_user_security_logout') }}">#}
+                            {#{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}#}
+                        {#</a>#}
+                    {#{% else %}#}
+                        {#<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>#}
+                    {#{% endif %}#}
 
-                </li>
+                {#</li>#}
             </ul>
         </div>
     </div>

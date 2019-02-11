@@ -21,7 +21,7 @@
                             {#Use badge badge-danger, badge badge-warning, badge badge-info, badge badge-success#}
                             <tr>
                                 <td>{{ contact.emailInterested }}</td>
-                                <td>{{ contact.dateInterested|date('d/m/Y h:i:s') }}</td>
+                                <td>{{ contact.dateInterested|date('d/m/Y H:i:s') }}</td>
                                 <td><label class="badge badge-danger">Pending</label></td>
                             </tr>
                         {% endfor %}

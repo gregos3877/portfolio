@@ -1,13 +1,12 @@
 {% extends 'baseBackend.html.twig' %}
 
 {% block body %}
-    <div class="row grid-margin">
-        <div class="col-12">
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
             <div class="card">
-                {{ form_start(edit_form, {'attr': {'class': 'form-sample'}}) }}
-
                 <div class="card-body">
                     <h4 class="card-title">Description General</h4>
+                    {{ form_start(edit_form, {'attr': {'class': 'form-sample'}}) }}
                     <div class="form-group row">
                         <div class="col-lg-3">
                             {{ form_label(edit_form.nomApp, null, {'label_attr': {'class': 'col-form-label'}}) }}
@@ -26,10 +25,52 @@
                             {{ form_widget(edit_form.descriptionApp, {'attr': {'class': 'form-control'}}) }}
                         </div>
                     </div>
+                    <input type="submit" value="Edit"/>
+                    {{ form_end(edit_form) }}
                 </div>
-                <input type="submit" value="Edit"/>
-                {{ form_end(edit_form) }}
             </div>
         </div>
     </div>
 {% endblock %}
+
+{#
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Nouveau Projet</h4>
+                    {{ form_start(form, {'attr': {'class': 'form-sample'}}) }}
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            {{ form_label(form.nomProjet, null, {'label_attr': {'class': 'col-form-label'}}) }}
+                            {{ form_errors(form.nomProjet) }}
+                        </div>
+                        <div class="col-lg-8">
+                            {{ form_widget(form.nomProjet, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            {{ form_label(form.descriptionProjet, null, {'label_attr': {'class': 'col-form-label'}}) }}
+                            {{ form_errors(form.descriptionProjet) }}
+                        </div>
+                        <div class="col-lg-8">
+                            {{ form_widget(form.descriptionProjet, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            {{ form_label(form.attachment, null, {'label_attr': {'class': 'col-form-label'}}) }}
+                            {{ form_errors(form.attachment) }}
+                        </div>
+                        <div class="col-lg-8">
+                            {{ form_widget(form.attachment, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <input type="submit" value="Valider" \>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+#}

@@ -1,0 +1,37 @@
+{% extends 'baseBackend.html.twig' %}
+
+{% block body %}
+    <h1>Mes Compétences</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Niveau</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for competence in competences %}
+            <tr>
+                <td>{{ competence.competence.nomCompetence }}</td>
+                <td>{{ competence.niveau }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('competence_edit', { 'id': competence.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('remove_competence', { 'id': competence.id }) }}">remove</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <ul>
+        <li>
+            <a href="{{ path('competence_new') }}">Ajouter une compétence</a>
+        </li>
+    </ul>
+{% endblock %}

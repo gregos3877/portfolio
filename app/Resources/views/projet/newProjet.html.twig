@@ -4,18 +4,42 @@
 
     <div class="row">
 
-        <div class="col-lg-6 grid-margin stretch-card">
+        <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Nouveau Projet</h4>
-                    {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                    <input type="submit" value="Valider"\>
+                    {{ form_start(form, {'attr': {'class': 'form-sample'}}) }}
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            {{ form_label(form.nomProjet, null, {'label_attr': {'class': 'col-form-label'}}) }}
+                            {{ form_errors(form.nomProjet) }}
+                        </div>
+                        <div class="col-lg-8">
+                            {{ form_widget(form.nomProjet, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            {{ form_label(form.descriptionProjet, null, {'label_attr': {'class': 'col-form-label'}}) }}
+                            {{ form_errors(form.descriptionProjet) }}
+                        </div>
+                        <div class="col-lg-8">
+                            {{ form_widget(form.descriptionProjet, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            {{ form_label(form.attachment, null, {'label_attr': {'class': 'col-form-label'}}) }}
+                            {{ form_errors(form.attachment) }}
+                        </div>
+                        <div class="col-lg-8">
+                            {{ form_widget(form.attachment, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <input type="submit" value="Valider" \>
                     {{ form_end(form) }}
                 </div>
             </div>
         </div>
     </div>
-
-
 {% endblock %}

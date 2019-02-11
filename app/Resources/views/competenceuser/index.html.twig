@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Competenceusers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Niveau</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for competenceUser in competenceUsers %}
+            <tr>
+                <td><a href="{{ path('competenceuser_show', { 'id': competenceUser.id }) }}">{{ competenceUser.id }}</a></td>
+                <td>{{ competenceUser.niveau }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('competenceuser_show', { 'id': competenceUser.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('competenceuser_edit', { 'id': competenceUser.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('competenceuser_new') }}">Create a new competenceUser</a>
+        </li>
+    </ul>
+{% endblock %}
